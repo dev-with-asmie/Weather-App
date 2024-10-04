@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Weather App</title>
+         <link rel="stylesheet" href="app.css">
+</head>
+<body>
+         <div class="card">
+                  <div class="search">
+                           <input type="text" placeholder="Enter City Name" spellcheck="false">
+                           <button><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAAY1BMVEX///8AAAD7+/vr6+v4+Pjm5uZoaGjPz8/w8PDd3d0qKirT09MxMTGNjY2+vr7z8/NbW1t0dHQVFRU/Pz+ysrK4uLgjIyMMDAwcHBzJycmUlJSoqKhPT0+ioqI2NjaBgYFGRkYQ8dtUAAAD/klEQVRogb1ZiZKrIBCMt3jiFU3iRv//K18iRwwCDhhfV23VFtEW5+gZxstFBw9Fj2rMrrXTD0kT5h0KfO0NYKDHNDoikuqvOMxcFvi6YSbo59w7tOk/BTFDdbOl9vPnDvdr+2FqRd3WAlGdNHOTDb2wHJobB1VfG6webXdLURygW9G292z9Y/Yw5L6t3FiHhSdEXozybPUGk2tA7T5WPlOFHLo3/CIcwMk/JsG6cAg+wdQgIHUwgqjfiHNmvr6FcbO3HVqAKdOQ7QTkVrbvJgLtxZ+Y3/cTymX2xmBpegzkjmQ3n+6UOzeQvRuNymbHjJ2JATkCmlShdkcRTfnJiPt1Hw2aXHNNiSE7kIG9sSYIqMFnk2z+vjVRbiuAel0Cn0bZXXUBjVhYrokoiVMThQ6kxCvYwihvtFqf5rs+0cKnsiH90SO/VZbcPJekWyf6OVjVxAUu0bBRFjCzVfqsgZQCRpPzUKszqOxCrFJbhgoBCYkmFtdpEti78w1iF2dTUKmwWXdQC7xRLqnkocOh7o8pDBaXiaxVBzvjbgn1RFwmvvg7xn1Jl3gZxGV8QLM+CJI3Sy+KF2lou4Pk7lOaLOSRh08LjdQAi7GutorIIY/Fxc1PaMenRCiNC+dM8vo3ZpEH3fU3Dp2lIpL9JBRJRG/ifPxhEtWlsDz9Jv0X617FZdIYGJ2cJCiWiM42zySxuCkiZiDlbBSXibUc+9r/hofldbgMDxd/Xua2FYcUkY3OG4FYBYvB8uqX6uNFNFGFHJViZQsMQLww1LI0J3bJDmgX6U7GrVV462/v0mhQvzvtI7ctDRDsfnke0m4xtCS/OToFoY8GHLOlIGr7VL04kQBntjJMrt34hZ+4bAxDxz/qo+IloOM482Cnia+tNoWz93IKbnr41x3PP0MLM6f6dEYjzZ8V6EG4NxlbsNlSv8PNZwtODi5KBfUUoHfw2LywAlYlPjnVG5wAsYEbaMAQsBGXA5sARQm9uJ72JNJtZ2cFSE9V8jt67YjcLb5mug6s7ylzfnn9p9q912F+VXY1YL+spvIZ/pOITVetDDKilP0LagijL2PWeYQQ8mK/9AKE0q5Z/5i8HclyFJbcXu58o09mXIXjcxDWMbFbytZh/SbC4pBfgqZlOsjZgcl9m7TEr0RbmxixTxxQ2Uvvmt1X0bd6B+wHuDBF0yiG88uJeJJkDJ+OGxQEN+0e00hDOWlwlXepXNbMYubzgNJ7IXj9xaVm+hAkVuxABCw/IBppzl6fuXePfZeAlxsD8K81RzpmJbznqexMjI+dglTsPJvOsPtn7z/6WP0f2WOeTWdYpmRf7U7JpphaZjNm/A07PaqcQn6Jq9Mk7PL+uj8Muf8PCNosHIKQh9kAAAAASUVORK5CYII=" height="30" width="30"></button>
+                  </div>
+                  <div class="weather">
+                          <img src="https://cdn-icons-png.flaticon.com/128/11666/11666797.png" class="weather-icon">
+                           <h1 class="temp">22°c</h1>
+                           <h2 class="city">Kolkata</h2>
+                           <div class="details">
+                                <div class="col">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/10960/10960565.png">
+                                        <div>
+                                             <p class="humidity">50%</p> 
+                                             <p>Humidity</p>  
+                                        </div>
+                                </div>
+                                <div class="col">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/6014/6014727.png">
+                                        <div>
+                                             <p class="wind">15 km/h</p> 
+                                             <p>Wind Speed</p>  
+                                        </div>
+                                </div>
+                           </div>
+                  </div>
+         </div>
+         <script>
+                const apiKey= "dfa27a2a0b6fda0ad1221f8da496039c";
+                const apiUrl="https://api.openweathermap.org/data/2.5/weather?q=&appid=dfa27a2a0b6fda0ad1221f8da496039c&units=metric";
+
+                const searchBox = document.querySelector(".search input");
+                const searchBtn = document.querySelector(".search button");
+                
+                async function checkWeather(city){
+                        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+                        var data= await response.json();
+                        console.log(data);
+                        document.querySelector(".city").innerHTML = data.name;
+                        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c" ;
+                        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+                }
+
+                searchBtn.addEventListener("click",()=>{
+                        checkWeather(searchBox.value);
+
+                })
+                
+         </script>
+</body>
+</html>
